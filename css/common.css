@@ -1,0 +1,189 @@
+html{
+	font-size: 0.7em;
+	font-family: "Arial", "メイリオ";
+	overflow-y: scroll;		/* エレメント作成前の幅算出でスクロールバー分が必要なため */
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+a.start_select_btn {
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	width: 120px;
+	margin: auto;
+	padding: 2rem 4rem;
+	font-weight: bold;
+	border: 2px solid gray;
+	color: #444;
+	transition: 0.5s;
+	background: #eee;
+    margin: 2rem auto;
+}
+a.start_select_btn:hover {
+	color: #fff;
+	background: #444;
+}
+
+/* ヘッダー */
+.header {
+    position: top; /* ヘッダーを固定する */
+    top: 0; /* 上部から配置の基準位置を決める */
+    left: 0; /* 左から配置の基準位置を決める */
+    width: 100%; /* ヘッダーの横幅を指定する */
+    height: 40px; /* ヘッダーの高さ指定する */
+    padding: 0.5em 1em 0em; /* ヘッダー内側の余白を指定する(上下左右) */
+    background-color: #fff; /* ヘッダーの背景色を指定する */
+    color: #222; /* ヘッダーのフォントの色を指定する */
+    box-shadow:0 2px 5px 2px #ccc; /* 影を指定（[右][下][ぼかし][広がり][影の色]） */
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; /* boder含めたボックスにwidthを合わせる */
+}
+/* ヘッダーのロゴ部分 */
+.header_title_logo {
+    height: 32px;
+}
+.header_inline_left {
+    position: absolute;
+    top: 20;
+    left: 70;
+}
+.header_inline_right {
+    position: absolute;
+    top: 20;
+    right: 10;
+}
+
+/* コンテンツ */
+.contents {
+    position: top;
+    width: 100%; /* コンテンツの横幅を指定する */
+    padding: 0 10px; /* コンテンツ内側の余白を指定する(上下/左右) */
+    margin: 10px 0 10px; /* コンテンツ外側の余白を指定する(上/左右/下) */
+    background-color: #fff; /* コンテンツの背景色を指定する */
+    overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; /* boder含めたボックスにwidthを合わせる */
+}
+
+/* フッター */
+.footer {
+    position: bottom;
+    width: 100%; /* フッターの横幅を指定する */
+    padding: 10px; /* フッター内側の余白を指定する(上下左右) */
+    background-color: #ddd; /* フッターの背景色を指定する */
+    color: #222; /* フッターのフォントの色を指定する */
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; /* boder含めたボックスにwidthを合わせる */
+}
+
+/* 日付選択表 */
+table {
+    width: 100%;
+    border-collapse:separate;
+    border-spacing: 0;
+}
+
+table th:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+table th:last-child {
+    border-radius: 0 5px 0 0;
+    border-right: 1px solid #3c6690;
+}
+
+table th {
+    text-align: center;
+    color:white;
+    background: linear-gradient(#829ebc,#225588);
+    border-left: 1px solid #3c6690;
+    border-top: 1px solid #3c6690;
+    border-bottom: 1px solid #3c6690;
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+    width: 25%;
+    padding: 10px 0;
+}
+
+table td {
+    text-align: center;
+    border-left: 1px solid #a8b7c5;
+    border-bottom: 1px solid #a8b7c5;
+    border-top:none;
+    box-shadow: 0px -3px 5px 1px #eee inset;
+    width: 25%;
+    padding: 10px 0;
+}
+
+table td:last-child {
+    border-right: 1px solid #a8b7c5;
+}
+
+table tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+}
+
+table tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+}
+
+/*トグルボタン*/
+.toggle_input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.toggle_label {
+    width: 75px;
+    height: 35px;
+    background: #ccc;
+    position: relative;
+    display: inline-block;
+    border-radius: 40px;
+    transition: 0.4s;
+    box-sizing: border-box;
+}
+
+.toggle_label:after {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: 0.4s;
+}
+
+.toggle_input:checked + .toggle_label {
+    background-color: #4BD865;
+}
+
+.toggle_input:checked + .toggle_label:after {
+    left: 40px;
+}
+
+.toggle_button {
+    position: relative;
+    width: 75px;
+    height: 35px;
+    margin: auto;
+}
