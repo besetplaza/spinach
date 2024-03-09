@@ -1,7 +1,7 @@
 html{
 	font-size: 0.7em;
 	font-family: "Arial", "メイリオ";
-	overflow-y: scroll;		/* エレメント作成前の幅算出でスクロールバー分が必要なため */
+	/*overflow-y: scroll;*/
 }
 
 body {
@@ -14,10 +14,17 @@ body {
 	box-sizing: inherit;
 }
 
+div.center_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 a.start_select_btn {
 	display: block;
 	text-align: center;
-	vertical-align: middle;
 	text-decoration: none;
 	width: 180px;
 	margin: auto;
@@ -27,7 +34,6 @@ a.start_select_btn {
 	color: #444;
 	transition: 0.3s;
 	background: #eee;
-    margin: 2rem auto;
     font-size: 3rem;
     border-radius: 1rem;
 }
@@ -69,12 +75,31 @@ a.start_select_btn:hover {
 .contents {
     position: top;
     width: 100%; /* コンテンツの横幅を指定する */
-    padding: 0 10px; /* コンテンツ内側の余白を指定する(上下/左右) */
-    margin: 10px 0 10px; /* コンテンツ外側の余白を指定する(上/左右/下) */
+    padding: 0 10px 10px; /* コンテンツ内側の余白を指定する(上/左右/下) */
+    margin: 10px 0 0px; /* コンテンツ外側の余白を指定する(上/左右/下) */
     background-color: #fff; /* コンテンツの背景色を指定する */
     overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
     -moz-box-sizing: border-box;
     box-sizing: border-box; /* boder含めたボックスにwidthを合わせる */
+
+}
+
+.contents > div.box {
+    position: top;
+    left: 0;
+    height: 42px;
+}
+.contents > div.box > div.box_left {
+    position: absolute;
+    display: inline-flex;
+    left: 10;
+    text-align: left;
+}
+.contents > div.box > div.box_right {
+    position: absolute;
+    display: inline-flex;
+    right: 10;
+    text-align: right;
 }
 
 /* フッター */
@@ -93,6 +118,7 @@ table {
     width: 100%;
     border-collapse:separate;
     border-spacing: 0;
+    margin: 0 0 5px;
 }
 
 table th:first-child {
@@ -112,7 +138,6 @@ table th {
     border-top: 1px solid #3c6690;
     border-bottom: 1px solid #3c6690;
     box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
-    width: 25%;
     padding: 10px 0;
 }
 
@@ -122,8 +147,7 @@ table td {
     border-bottom: 1px solid #a8b7c5;
     border-top:none;
     box-shadow: 0px -3px 5px 1px #eee inset;
-    width: 25%;
-    padding: 10px 0;
+    padding: 10px 10px;
 }
 
 table td:last-child {
@@ -136,6 +160,17 @@ table tr:last-child td:first-child {
 
 table tr:last-child td:last-child {
     border-radius: 0 0 5px 0;
+}
+
+.table_column {
+    text-align: center;
+    color:white;
+    background: linear-gradient(#829ebc,#225588);
+    border-left: 1px solid #3c6690;
+    border-top: 1px solid #3c6690;
+    border-bottom: 1px solid #3c6690;
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+    padding: 10px 0;
 }
 
 /*トグルボタン*/
@@ -188,4 +223,116 @@ table tr:last-child td:last-child {
     width: 75px;
     height: 35px;
     margin: auto;
+}
+
+input[name=product] {
+    width: 100%;
+    height: 30px;
+    font-size: 1em;
+}
+
+input[name=price] {
+    width: 70px;
+    height: 30px;
+    font-size: 1em;
+    text-align: right;
+}
+
+input[name=quantity] {
+    width: 40px;
+    height: 30px;
+    font-size: 1em;
+    text-align: right;
+}
+
+.operation_btn {
+    height: 30px;
+    margin: 0 3px;
+}
+
+input[type=date] {
+    height: 30px; /* ボタンと同じ高さにする */
+}
+
+.icon_btn {
+    /*
+    vertical-align: top;
+    margin: 0.1em 0.3em 0 0;
+    width: 16px;
+    height: 16px;
+    */
+}
+
+.icon_memo {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background: url("../images/icon_memo.png") no-repeat left;
+    background-size: 16px;
+    vertical-align: middle;
+}
+
+.icon_pen {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background: url("../images/icon_pen.png") no-repeat left;
+    background-size: 16px;
+    vertical-align: middle;
+}
+
+.icon_trash {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background: url("../images/icon_trash.png") no-repeat left;
+    background-size: 16px;
+    vertical-align: middle;
+}
+
+.icon_plus {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background: url("../images/icon_plus.png") no-repeat left;
+    background-size: 16px;
+    vertical-align: middle;
+}
+
+.icon_minus {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background: url("../images/icon_minus.png") no-repeat left;
+    background-size: 16px;
+    vertical-align: middle;
+}
+
+.icon_copy {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background: url("../images/icon_copy.png") no-repeat left;
+    background-size: 16px;
+    vertical-align: middle;
+}
+
+.icon_fropy {
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background: url("../images/icon_fropy.png") no-repeat left;
+    background-size: 16px;
+    vertical-align: middle;
+}
+
+.icon_cancel {
+    display: inline-block;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.message_from_bp {
+    width: 400px;
+    height: 30px;
 }

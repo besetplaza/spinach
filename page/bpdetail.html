@@ -1,0 +1,92 @@
+<!DOCTYPE html lang="ja">
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta name="robots" content="noindex,nofollow,noarchive" />
+	<meta name="viewport" content="width=device-width">
+	<link rel="shortcut icon" href="../images/favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+	<sctipt src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></sctipt>
+	<!--<script src="../js/import.js" type="module"></script>-->
+    <script src="../js/common.js"></script>
+    <script src="../js/bpdetail.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+	<link rel="stylesheet" href="../css/common.css">
+    <title>教会納品 - 店舗側入力 -</title>
+</head>
+<body>
+    <!-- header -->
+    <header class="header">
+        <img src="../images/logo_plaza.png" class="header_title_logo" />
+        <div class="header_inline_left"></div>
+        <div class="header_inline_right">店舗ユーザー</div>
+    </header>
+    <article class="contents">
+        <div class="box">
+            <div class="box_left">
+                <input type="date" id="next_sunday">&nbsp;
+                <input type="text" class="message_from_bp" placeholder="店舗からのメッセージ"></textarea>
+            </div>
+            <div class="box_right">
+                <button type="button" id="bp_copy_before">
+                    <div class="icon_copy"></div>前回からコピー
+                </button>
+            </div>
+        </div>
+        <table id="grid">
+            <thead>
+                <th width="10">No</th>
+                <th>品名</th>
+                <th width="120">定価</th>
+                <th width="90">10%OFF</th>
+                <th width="120">販売価格</th>
+                <th width="70">個数</th>
+                <th width="90">行削除</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" name="product" value="芋けんぴ"></td>
+                    <td><input type="number" step="1" min="0" max="9999" inputmode="numeric" name="price" value="270">&nbsp;円</td>
+                    <td><span>243</span>&nbsp;円
+                    <td><input type="number" step="1" min="0" max="9999" inputmode="numeric" name="price" value="240">&nbsp;円</td>
+                    <td><input type="number" step="1" min="0" max="9999" inputmode="numeric" name="quantity" value="0"></td>
+                    <td>
+                        <button type="button" name="bp_delete_row" value="1">
+                            <div class="icon_minus"></div>取消
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="table_column">合計</td>
+                    <td><span id="price_sum"></span>&nbsp;円</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="box">
+            <div class="box_left">
+                <button type="button" id="bp_add_row">
+                    <div class="icon_plus"></div>行追加
+                </button>
+            </div>
+            <div class="box_right">
+                <button type="button" id="bp_save">
+                    <div class="icon_fropy"></div>保存
+                </button>
+                &nbsp;&nbsp;
+                <button type="button" id="bp_cancel">
+                    <div class="icon_cancel"></div>キャンセル
+                </button>
+            </div>
+        </div>
+    </article>
+    <!-- footer -->
+    <footer class="footer">
+        &copy;2024. All rights reserved by Be-set Plaza.
+    </footer>
+</body>
+</html>
+
