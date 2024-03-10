@@ -8,27 +8,29 @@
 	<link rel="shortcut icon" href="../images/favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-	<sctipt src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></sctipt>
-	<!--<script src="../js/import.js" type="module"></script>-->
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cdate/dist/cdate.min.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/bpdetail.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 	<link rel="stylesheet" href="../css/common.css">
-    <title>教会納品 - 店舗側入力 -</title>
+    <title>教会納品 - 店舗側入力 明細 -</title>
 </head>
 <body>
     <!-- header -->
     <header class="header">
         <img src="../images/logo_plaza.png" class="header_title_logo" />
         <div class="header_inline_left"></div>
-        <div class="header_inline_right">店舗ユーザー</div>
+        <div class="header_inline_right"></div>
     </header>
     <article class="contents">
         <div class="box">
             <div class="box_left">
                 <input type="date" id="next_sunday">&nbsp;
-                <input type="text" class="message_from_bp" placeholder="店舗からのメッセージ"></textarea>
+            </div>
+            <div class="box_center">
+                <input type="text" placeholder="店舗からのメッセージ" style="width: 400px;">
             </div>
             <div class="box_right">
                 <button type="button" id="bp_copy_before">
@@ -36,16 +38,17 @@
                 </button>
             </div>
         </div>
-        <table id="grid">
+        <table id="myTable">
             <thead>
-                <th width="10">No</th>
+                <th>ID</th>
                 <th>品名</th>
-                <th width="120">定価</th>
-                <th width="90">10%OFF</th>
-                <th width="120">販売価格</th>
-                <th width="70">個数</th>
-                <th width="90">行削除</th>
+                <th>定価</th>
+                <th>10%OFF</th>
+                <th>販売価格</th>
+                <th>個数</th>
+                <th>行削除</th>
             </thead>
+            <!--
             <tbody>
                 <tr>
                     <td>1</td>
@@ -65,12 +68,19 @@
                     <td><span id="price_sum"></span>&nbsp;円</td>
                 </tr>
             </tbody>
+            -->
         </table>
         <div class="box">
             <div class="box_left">
                 <button type="button" id="bp_add_row">
                     <div class="icon_plus"></div>行追加
                 </button>
+            </div>
+            <div class="box_center">
+                <span style="margin-left: 5px;">
+                    「定価」を変えると「10%OFF」と「販売価格」を自動で入力するので、<br>
+                    「販売価格」は「定価」を入力後に決めてください。
+                </span>
             </div>
             <div class="box_right">
                 <button type="button" id="bp_save">

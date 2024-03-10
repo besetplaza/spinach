@@ -9,6 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cdate/dist/cdate.min.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/bplist.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
@@ -21,16 +22,22 @@
     <header class="header">
         <img src="../images/logo_plaza.png" class="header_title_logo" />
         <div class="header_inline_left"></div>
-        <div class="header_inline_right">店舗ユーザー</div>
+        <div class="header_inline_right"></div>
     </header>
     <article class="contents">
         <div class="box">
-            <button type="button" id="bp_add">
-                <div class="icon_memo"></div>新規作成
-            </button>
+            <div class="box_left">
+                <button type="button" id="bp_add">
+                    <div class="icon_memo"></div>新規作成
+                </button>
+            </div>
+            <div class="box_right">
+                今日より前の日付は編集できません。
+            </div>
         </div>
         <table id="myTable">
             <thead>
+                <th>ID</th>
                 <th>教会側に公開</th>
                 <th>日付</th>
                 <th>編集</th>

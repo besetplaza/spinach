@@ -55,6 +55,7 @@ a.start_select_btn:hover {
     box-shadow:0 2px 5px 2px #ccc; /* 影を指定（[右][下][ぼかし][広がり][影の色]） */
     -moz-box-sizing: border-box;
     box-sizing: border-box; /* boder含めたボックスにwidthを合わせる */
+    margin-bottom: 10px;
 }
 /* ヘッダーのロゴ部分 */
 .header_title_logo {
@@ -76,12 +77,11 @@ a.start_select_btn:hover {
     position: top;
     width: 100%; /* コンテンツの横幅を指定する */
     padding: 0 10px 10px; /* コンテンツ内側の余白を指定する(上/左右/下) */
-    margin: 10px 0 0px; /* コンテンツ外側の余白を指定する(上/左右/下) */
+    margin: 0; /* コンテンツ外側の余白を指定する(上/左右/下) */
     background-color: #fff; /* コンテンツの背景色を指定する */
     overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
     -moz-box-sizing: border-box;
     box-sizing: border-box; /* boder含めたボックスにwidthを合わせる */
-
 }
 
 .contents > div.box {
@@ -90,9 +90,16 @@ a.start_select_btn:hover {
     height: 42px;
 }
 .contents > div.box > div.box_left {
-    position: absolute;
+    float: left;
+    /*position: absolute;*/
     display: inline-flex;
     left: 10;
+    text-align: left;
+}
+.contents > div.box > div.box_center {
+    float: left;
+    /*position: absolute;*/
+    display: inline-flex;
     text-align: left;
 }
 .contents > div.box > div.box_right {
@@ -106,7 +113,7 @@ a.start_select_btn:hover {
 .footer {
     position: bottom;
     width: 100%; /* フッターの横幅を指定する */
-    padding: 10px; /* フッター内側の余白を指定する(上下左右) */
+    padding: 5px; /* フッター内側の余白を指定する(上下左右) */
     background-color: #ddd; /* フッターの背景色を指定する */
     color: #222; /* フッターのフォントの色を指定する */
     -moz-box-sizing: border-box;
@@ -225,26 +232,6 @@ table tr:last-child td:last-child {
     margin: auto;
 }
 
-input[name=product] {
-    width: 100%;
-    height: 30px;
-    font-size: 1em;
-}
-
-input[name=price] {
-    width: 70px;
-    height: 30px;
-    font-size: 1em;
-    text-align: right;
-}
-
-input[name=quantity] {
-    width: 40px;
-    height: 30px;
-    font-size: 1em;
-    text-align: right;
-}
-
 .operation_btn {
     height: 30px;
     margin: 0 3px;
@@ -254,16 +241,32 @@ input[type=date] {
     height: 30px; /* ボタンと同じ高さにする */
 }
 
-.icon_btn {
-    /*
-    vertical-align: top;
-    margin: 0.1em 0.3em 0 0;
-    width: 16px;
-    height: 16px;
-    */
+input[type=number] {
+    height: 30px; /* ボタンと同じ高さにする */
 }
 
-.icon_memo {
+input[type=text] {
+    height: 30px; /* ボタンと同じ高さにする */
+}
+
+input.product {
+    width: 100%;
+    font-size: 1em;
+}
+
+input.price {
+    width: 64px;
+    font-size: 1em;
+    text-align: right;
+}
+
+input.quantity {
+    width: 42px;
+    font-size: 1em;
+    text-align: right;
+}
+
+div.icon_memo {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -272,7 +275,7 @@ input[type=date] {
     vertical-align: middle;
 }
 
-.icon_pen {
+div.icon_pen {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -281,7 +284,7 @@ input[type=date] {
     vertical-align: middle;
 }
 
-.icon_trash {
+div.icon_trash {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -290,7 +293,7 @@ input[type=date] {
     vertical-align: middle;
 }
 
-.icon_plus {
+div.icon_plus {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -299,7 +302,7 @@ input[type=date] {
     vertical-align: middle;
 }
 
-.icon_minus {
+div.icon_minus {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -308,7 +311,7 @@ input[type=date] {
     vertical-align: middle;
 }
 
-.icon_copy {
+div.icon_copy {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -317,7 +320,7 @@ input[type=date] {
     vertical-align: middle;
 }
 
-.icon_fropy {
+div.icon_fropy {
     display: inline-block;
     width: 20px;
     height: 30px;
@@ -326,13 +329,12 @@ input[type=date] {
     vertical-align: middle;
 }
 
-.icon_cancel {
+div.icon_cancel {
     display: inline-block;
     height: 30px;
     vertical-align: middle;
 }
 
-.message_from_bp {
-    width: 400px;
-    height: 30px;
+div.icon_disable {
+    opacity: 0.3;
 }

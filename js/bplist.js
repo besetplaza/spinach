@@ -1,68 +1,94 @@
+// 公開トグルボタン
+const eventToggle = function(id, public, date) {
+    //console.log(id + '/' + public + '/' + date);
+}
+
+// 変更ボタン
+const eventModify = function(id, date) {
+    let location = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+    let url = new URL(location + '/bpdetail.html');
+    url.searchParams.append(ParamItem.type, ParamType.mod);
+    url.searchParams.append(ParamItem.date, date);
+    window.location.href = url;
+};
+
+// 削除ボタン
+const eventRemove= function(id, date) {
+    if (confirm(date + ' の行を削除してよろしいですか？')) {
+
+    }
+};
+
 $(function() {
-
+    // 新規作成ボタン
     $('#bp_add').on('click', function() {
-        window.location.href = 'bpdetail.html?add';
-    });
-
-    $('button[name="bp_modify"]').on('click', function() {
-        console.log(this.value);
-        window.location.href = 'bpdetail.html?mod';
-    });
-
-    $('button[name="bp_remove"]').on('click', function() {
-        console.log(this.value);
-        if (confirm('削除してよろしいですか？')) {
-
-        }
+        var date = cdate().format('YYYY-MM-DD');
+        let location = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+        let url = new URL(location + '/bpdetail.html');
+        url.searchParams.append(ParamItem.type, ParamType.add);
+        url.searchParams.append(ParamItem.date, date);
+        window.location.href = url;
     });
 
     //公開列
-    const customRenderPublic = function(arg){
-        if (arg) {
-            return `<div class="toggle_button">
-                        <input id="toggle" class="toggle_input" type='checkbox' checked />
-                        <label for="toggle" class="toggle_label"></label>
-                    </div>`;
-        } else {
-            return `<div class="toggle_button">
-                        <input id="toggle" class="toggle_input" type='checkbox' />
-                        <label for="toggle" class="toggle_label"></label>
-                    </div>`;
+    const customRenderPublic = function(data, type, row, meta){
+        let checked = "";
+        if (data) {
+            checked = "checked";
         }
+        return `<div class="toggle_button">
+                    <input id="toggle_${row.id}" class="toggle_input" type='checkbox' onclick='eventToggle(${row.id},${!data},"${row.date}")' ${checked}>
+                    <label for="toggle_${row.id}" class="toggle_label"></label>
+                </div>`;
     }
 
     //編集列
-    const customRenderEdit = function(arg){
-        return `<button type="button" name="bp_modify" value="${arg}">
-                    <div class="icon_pen"></div>変更
+    const customRenderEdit = function(data, type, row, meta){
+        const today = cdate().format("YYYYMMDD");
+        const targetday = cdate(row.date).format("YYYYMMDD");
+        //console.log("today:" +today + "/targetday:" + targetday);
+        let disabled = "";
+        let disableClass = "";
+        if (targetday < today) {
+            disabled = "disabled";
+            disableClass = "icon_disable";
+        }
+        return `<button type='button' onclick='eventModify(${row.id},"${row.date}")' ${disabled}>
+                    <div class='icon_pen ${disableClass}'></div>変更
                 </button>
                 &nbsp;&nbsp;
-                <button type="button" name="bp_remove" value="${arg}">
-                    <div class="icon_trash"></div>削除
+                <button type='button' onclick='eventRemove(${row.id},"${row.date}")' ${disabled}>
+                    <div class='icon_trash ${disableClass}'></div>削除
                 </button>`;
+
     }
 
     var data = [
         {
-            public: false,
-            date: "2024/3/10",
-            edit: 1
-        }, 
-        {
+            id: 3,
             public: true,
-            date: "2024/3/3",
-            edit: 2
+            date: "2024-03-17",
+        }, {
+            id: 2,
+            public: true,
+            date: "2024-03-10",
+        }, {
+            id: 1,
+            public: false,
+            date: "2024-03-03",
         }
     ];
 
     $('#myTable').DataTable({
         data: data,
         columnDefs: [
-            { targets: 0, width: "30%" },
+            { targets: 0, width: "40px" },
             { targets: 1, width: "30%" },
-            { targets: 2, width: "40%", visible: true }
+            { targets: 2, width: "30%" },
+            { targets: 3 }
         ],
         columns: [
+            { data: 'id' },
             { data: 'public', render: customRenderPublic },
             { data: 'date' },
             { data: 'edit', render: customRenderEdit }
