@@ -40,13 +40,17 @@
         </div>
         <table id="myTable">
             <thead>
-                <th>ID</th>
-                <th>品名</th>
-                <th>定価</th>
-                <th>10%OFF</th>
-                <th>販売価格</th>
-                <th>個数</th>
-                <th>行削除</th>
+                <tr>
+                    <th rowspan="2">#</th>
+                    <th colspan="3">品名</th>
+                    <th rowspan="2">個数</th>
+                    <th rowspan="2">行削除</th>
+                </tr>
+                <tr>
+                    <th class="table_col_span">定価</th>
+                    <th class="table_col_span">10%OFF</th>
+                    <th class="table_col_span">販売価格</th>
+                </tr>
             </thead>
             <!--
             <tbody>
@@ -78,7 +82,6 @@
             </div>
             <div class="box_center">
                 <span style="margin-left: 5px;">
-                    「定価」を変えると「10%OFF」と「販売価格」を自動で入力するので、<br>
                     「販売価格」は「定価」を入力後に決めてください。
                 </span>
             </div>

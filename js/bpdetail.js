@@ -24,7 +24,7 @@ const getSummary = function() {
 const updateSummary = function() {
     if ($("span#sumprice").length < 1) {
         let sum = getSummary();
-        let tr = '<tr><td colspan="4" class="table_column">合計</td><td><span id="sumprice">' + formatNumber(sum) + '</span>&nbsp;円</td></tr>';
+        let tr = '<tr><td colspan="4" class="table_col_sum">合計</td><td><span id="sumprice">' + formatNumber(sum) + '</span>&nbsp;円</td></tr>';
         $('tbody').append(tr);
     }
     let sumprice = getSummary();
@@ -111,7 +111,7 @@ $(function() {
 
     // 品名列
     const customRenderProduct = function(data, type, row, meta){
-        return `<input type="text" class="product" value="${data}">`;
+        return `<input type="text" id="product_${row.id}" class="product" value="${data}">`;
     }
 
     // 10%OFF列
@@ -141,7 +141,7 @@ $(function() {
     // 削除列
     const customRenderDelete = function(data, type, row, meta){
         return `<button type="button" value="${row.id}" onclick="eventDelete(${row.id},'${row.product}')">
-                    <div class="icon_minus"></div>削除
+                    <div class="icon_minus"></div>
                 </button>`;
     }
     
@@ -169,7 +169,7 @@ $(function() {
     table = $("#myTable").DataTable({
         data: data,
         columnDefs: [
-            { targets: 0, width: "30px" },
+            { targets: 0 },
             { targets: 1 },
             { targets: 2, width: "110px" },
             { targets: 3, width: "80px" },
@@ -186,8 +186,36 @@ $(function() {
             { data: 'quantity', render: customRenderQuantity },
             { data: 'delete', render: customRenderDelete }
         ],
-        initComplete: function (settings, json) {
+        initComplete: function(settings, json){
             updateSummary();
+        },
+        createdRow: function(row, data, dataIndex, cells){
+            //console.log("row:" + row + "/data:" + data + "/dataIndex:" + dataIndex + "/cells:" + cells);
+            //console.log(dataIndex + ":" + cells[1].innerHTML);
+            console.log($('td:eq(2)', row));    //530
+            console.log($('td:eq(3)', row));    //477
+            console.log($('td:eq(4)', row));    //490
+            let tdListPrice = $('td:eq(2)', row).attr('rowspan', 2).innerHTML;
+            let tdOffPrice = $('td:eq(3)', row).attr('rowspan', 2).innerHTML;
+            let tdSalesPrice = $('td:eq(4)', row).attr('rowspan', 2).innerHTML;
+            // console.log("tdListPrice:" + tdListPrice);
+            // console.log("tdOffPrice:" + tdOffPrice);
+            // console.log("tdSalesPrice:" + tdSalesPrice);
+            $('td:eq(2)', row).remove();
+            $('td:eq(3)', row).remove();
+            $('td:eq(4)', row).remove();
+            $('#myTable').append('<tr>' + tdListPrice + tdOffPrice + tdSalesPrice + '</tr>');
+            console.log($('#myTable').innerHTML);
+
+            $('td:eq(0)', row).attr('rowspan', 2);
+            $('td:eq(1)', row).attr('colspan', 3);
+            // console.log($('td:eq(0)', row));
+            // console.log($('td:eq(1)', row));
+            // console.log($('td:eq(2)', row));    //530
+            // console.log($('td:eq(3)', row));    //477
+            // console.log($('td:eq(4)', row));    //490
+            // console.log($('td:eq(5)', row));
+            // console.log($('td:eq(6)', row));    //削除
         },
         lengthChange: false,    // 件数切替機能 無効
         searching: false,   // 検索機能 無効

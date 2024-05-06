@@ -65,12 +65,16 @@ $(function() {
 
     var data = [
         {
+            id: 4,
+            public: true,
+            date: "2024-03-31",
+        }, {
             id: 3,
             public: true,
             date: "2024-03-17",
         }, {
             id: 2,
-            public: true,
+            public: false,
             date: "2024-03-10",
         }, {
             id: 1,
@@ -82,10 +86,10 @@ $(function() {
     $('#myTable').DataTable({
         data: data,
         columnDefs: [
-            { targets: 0, width: "40px" },
-            { targets: 1, width: "30%" },
-            { targets: 2, width: "30%" },
-            { targets: 3 }
+            { targets: 0, visible: false },
+            { targets: 1 },
+            { targets: 2 },
+            { targets: 3, width: "180px" }
         ],
         columns: [
             { data: 'id' },
